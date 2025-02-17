@@ -143,7 +143,7 @@ export default function Landing() {
         <DropdownMenu onOpenChange={(open) => setDropdownOpen(open)}>
         <DropdownMenuTrigger className="flex items-center space-x-2 px-4 py-2">
         <div className="flex items-center space-x-2 text-white text-bold">
-            <Image src="/flags/india.png" alt="Indian Flag" className="w-5 h-5" />
+            <Image src="/flags/india.png" alt="Indian Flag" className="w-5 h-5" width={48} height={48} />
             <span className='flex gap-2 items-center'>
             INR
             {dropdownOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -153,7 +153,7 @@ export default function Landing() {
         <DropdownMenuContent className='max-h-60 overflow-y-auto'>
         <DropdownMenuItem>
             <div className="flex items-center space-x-2">
-            <Image src="/flags/usa.png" alt="USA Flag" className="w-5 h-5" />
+            <Image src="/flags/usa.png" alt="USA Flag" className="w-5 h-5" width={48} height={48} />
             <span>US Dollar</span>
             </div>
         </DropdownMenuItem>
@@ -164,7 +164,7 @@ export default function Landing() {
       {/* Chatbox & Music Player (Not Blurred) */}
       <div className='fixed bottom-0 right-0 pr-2 pb-2 z-50'>
         <MusicPlayer 
-          imageSrc="https://pngimg.com/uploads/vinyl/vinyl_PNG22.png"  
+          imageSrc="/images/record.png"  
           audioSrc="/music/luther.mp3"  
         />
       </div>
