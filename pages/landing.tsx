@@ -2,7 +2,7 @@
 
 import { Menu, ChevronDown, ChevronUp, CircleDot, ArrowRight, X, Instagram } from 'lucide-react';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,7 +52,7 @@ export default function Landing() {
       {/* Background + Blur Container */}
       <div 
         className={`absolute inset-0 z-0 transition-transform duration-300 ${menuOpen ? 'blur-lg' : ''}`}
-        style={{ transform: `translateX(${bgOffset}px)` }}
+        // style={{ transform: `translateX(${bgOffset}px)` }}
       >
         <Image
           src="/images/background.png"
