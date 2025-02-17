@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Play, Pause } from "lucide-react";
+import Image from "next/image";
 
 interface MusicPlayerProps {
   imageSrc: string;
@@ -25,7 +26,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ imageSrc, audioSrc }) => {
     <div className="flex items-center space-x-4">
       {/* CD Image - Rotates when playing */}
       <div className={`w-16 h-16 rounded-full overflow-hidden border border-gray-300 shadow-lg transition-all ${isPlaying ? "spin-slow" : ""}`}>
-        <img src={imageSrc} alt="CD Cover" className="w-full h-full object-cover rounded-full" />
+        <Image src={imageSrc} alt="CD Cover" className="w-full h-full object-cover rounded-full" />
       </div>
 
       {/* Play/Pause Button */}
