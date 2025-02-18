@@ -39,39 +39,39 @@ export default function Landing() {
   const [menuOpen, setMenuOpen] = useState(false);
   const bgRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (!bgRef.current) return; // Prevent null errors
+  useEffect(() => {
+    if (!bgRef.current) return; // Prevent null errors
   
-  //   const bg = bgRef.current;
-  //   const imageWidth = bg.scrollWidth - window.innerWidth; // Full horizontal scrollable width
+    const bg = bgRef.current;
+    const imageWidth = bg.scrollWidth - window.innerWidth; // Full horizontal scrollable width
   
-  //   // Disable vertical scrolling
-  //   document.documentElement.style.overflowY = "hidden";
-  //   document.body.style.overflowY = "hidden";
+    // Disable vertical scrolling
+    document.documentElement.style.overflowY = "hidden";
+    document.body.style.overflowY = "hidden";
   
-  //   let scrollY = 0;
-  //   let targetX = 0;
+    let scrollY = 0;
+    let targetX = 0;
   
-  //   const onScroll = () => {
-  //     scrollY = window.scrollY;
-  //     targetX = (scrollY / window.innerHeight) * imageWidth;
+    const onScroll = () => {
+      scrollY = window.scrollY;
+      targetX = (scrollY / window.innerHeight) * imageWidth;
   
-  //     gsap.to(bg, {
-  //       x: -targetX,
-  //       ease: "none",
-  //       overwrite: true,
-  //     });
-  //   };
+      gsap.to(bg, {
+        x: -targetX,
+        ease: "none",
+        overwrite: true,
+      });
+    };
   
-  //   window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll);
   
-  //   return () => {
-  //     // Reset styles on cleanup
-  //     document.documentElement.style.overflowY = "";
-  //     document.body.style.overflowY = "";
-  //     window.removeEventListener("scroll", onScroll);
-  //   };
-  // }, []);
+    return () => {
+      // Reset styles on cleanup
+      document.documentElement.style.overflowY = "";
+      document.body.style.overflowY = "";
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
   
 
   return (
