@@ -11,6 +11,8 @@ html, body {
   padding: 0;
   background: rgb(39, 39, 39) !important;
   overflow: hidden; /* Prevents any scroll-related issues */
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling */
 }
 
 @layer base {

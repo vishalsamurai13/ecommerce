@@ -2,7 +2,7 @@
 
 import { Menu, ChevronDown, ChevronUp, CircleDot, ArrowRight, X, Instagram } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +11,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import MusicPlayer from '@/components/player';
 import Chatbox from '@/components/chatbox';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // HoverButton Component
 const HoverButton = ({ title }: { title: string }) => {
@@ -31,42 +37,56 @@ const HoverButton = ({ title }: { title: string }) => {
 export default function Landing() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-//   const lastScrollY = useRef(0);
-//   const [bgOffset, setBgOffset] = useState(0);
+  const bgRef = useRef<HTMLDivElement>(null);
 
-//     useEffect(() => {
-//     const handleScroll = () => {
-//         console.log("scrolling...");
-        
-//     };
-
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//     }, []);
+  // useEffect(() => {
+  //   if (!bgRef.current) return; // Prevent null errors
+  
+  //   const bg = bgRef.current;
+  //   const imageWidth = bg.scrollWidth - window.innerWidth; // Full horizontal scrollable width
+  
+  //   // Disable vertical scrolling
+  //   document.documentElement.style.overflowY = "hidden";
+  //   document.body.style.overflowY = "hidden";
+  
+  //   let scrollY = 0;
+  //   let targetX = 0;
+  
+  //   const onScroll = () => {
+  //     scrollY = window.scrollY;
+  //     targetX = (scrollY / window.innerHeight) * imageWidth;
+  
+  //     gsap.to(bg, {
+  //       x: -targetX,
+  //       ease: "none",
+  //       overwrite: true,
+  //     });
+  //   };
+  
+  //   window.addEventListener("scroll", onScroll);
+  
+  //   return () => {
+  //     // Reset styles on cleanup
+  //     document.documentElement.style.overflowY = "";
+  //     document.body.style.overflowY = "";
+  //     window.removeEventListener("scroll", onScroll);
+  //   };
+  // }, []);
   
 
-
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative w-screen h-screen overflow-auto">
       {/* Background + Blur Container */}
-      <div 
-        className={`absolute inset-0 z-0 transition-transform duration-300 ${menuOpen ? 'blur-lg' : ''}`}
-        // style={{ transform: `translateX(${bgOffset}px)` }}
-      >
-        <Image
-          src="/images/background.png"
-          alt="Background"
-          fill
-          className='object-cover'
-          quality={100}
-        />
-      </div>
+      <div
+        ref={bgRef}
+        className="absolute inset-0 z-0 min-w-[400vw] lg:min-w-[105vw] min-h-screen bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/background.png')" }}
+      />
 
       {/* Content to Blur */}
       <div className={`absolute inset-0 z-10 transition-all duration-300 ${menuOpen ? 'blur-lg' : ''}`}>
         {/* Header */}
-        <div className="w-full p-1 flex flex-row justify-between items-center">
+        <div className="fixed w-full p-1 flex flex-row justify-between items-center">
           {/* Menu Button with Animation */}
           <button 
             onClick={() => setMenuOpen(!menuOpen)} 
@@ -81,19 +101,19 @@ export default function Landing() {
         </div>
 
         {/* Hover Buttons */}
-        <div className="absolute top-[580px] left-[337px] lg:block hidden">
+        <div className="absolute top-[550px] left-[370px] lg:top-[580px] lg:left-[380px] lg:block">
           <HoverButton title="Flower Pot" />
         </div>
-        <div className="absolute top-[800px] right-[700px] lg:block hidden">
+        <div className="absolute top-[750px] left-[900px] lg:top-[800px] lg:right-[700px] lg:block">
           <HoverButton title="Carpet" />
         </div>
-        <div className="absolute top-[700px] right-[100px] lg:block hidden">
+        <div className="absolute top-[650px] left-[1500px] lg:top-[700px] lg:right-[50px] lg:block">
           <HoverButton title="Arm Chair" />
         </div>
 
         {/* Enter Room Button */}
-        <div className="hidden md:block overflow-visible">
-          <button className="border border-white bg-black text-white p-2 rounded-full absolute top-[400px] right-[400px] flex items-center justify-start w-10 h-10 transition-all duration-300 ease-in-out group hover:w-48 hover:rounded-lg hover:bg-black hover:bg-opacity-100 ">
+        <div className="overflow-visible">
+          <button className="border border-white bg-black text-white p-2 rounded-full absolute top-[400px] left-[1300px] lg:top-[400px] lg:right-[380px] flex items-center justify-start w-10 h-10 transition-all duration-300 ease-in-out group hover:w-48 hover:rounded-lg hover:bg-black hover:bg-opacity-100 ">
             <span className="opacity-0 text-white font-bold text-sm uppercase transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:ml-4 absolute left-4">
               Enter Room
             </span>
@@ -138,7 +158,7 @@ export default function Landing() {
         </ul>
       </div>
 
-      <div className="absolute top-4 right-4 z-50">
+      <div className="fixed top-4 right-4 z-50">
         {/* Dropdown Menu */}
         <DropdownMenu onOpenChange={(open) => setDropdownOpen(open)}>
         <DropdownMenuTrigger className="flex items-center space-x-2 px-4 py-2">
@@ -172,7 +192,7 @@ export default function Landing() {
       <div className='fixed bottom-20 right-5 z-50'>
         <Chatbox />
       </div>
-      <div className="h-[200vh]">hi</div>
+      
     </div>
   );
 }
