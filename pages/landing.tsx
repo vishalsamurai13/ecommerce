@@ -95,9 +95,9 @@ export default function Landing() {
             <Menu className="w-10 h-10 text-white transform transition-transform duration-300 rotate-0" size={48} />
           </button>
 
-          <div className="flex-grow flex justify-center items-center">
+          {/* <div className="flex-grow flex justify-center items-center">
             LOGO
-          </div>
+          </div> */}
         </div>
 
         {/* Hover Buttons */}
@@ -160,7 +160,7 @@ export default function Landing() {
 
       <div className="fixed top-4 right-4 z-50">
         {/* Dropdown Menu */}
-        <DropdownMenu onOpenChange={(open) => setDropdownOpen(open)}>
+        {/* <DropdownMenu onOpenChange={(open) => setDropdownOpen(open)}>
         <DropdownMenuTrigger className="flex items-center space-x-2 px-4 py-2">
         <div className="flex items-center space-x-2 text-white text-bold">
             <Image src="/flags/india.png" alt="Indian Flag" className="w-5 h-5" width={48} height={48} />
@@ -178,11 +178,11 @@ export default function Landing() {
             </div>
         </DropdownMenuItem>
         </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
         
       {/* Chatbox & Music Player (Not Blurred) */}
-      <div className='fixed bottom-0 right-0 pr-2 pb-2 z-50'>
+      {/* <div className='fixed bottom-0 right-0 pr-2 pb-2 z-50'>
         <MusicPlayer 
           imageSrc="/images/record.png"  
           audioSrc="/music/luther.mp3"  
@@ -191,7 +191,7 @@ export default function Landing() {
       
       <div className='fixed bottom-20 right-5 z-50'>
         <Chatbox />
-      </div>
+      </div> */}
       
     </div>
   );
